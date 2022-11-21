@@ -61,3 +61,24 @@ This allows us to use proper cors architecture and design a proper routing syste
 - FastRoute: This help us maintain a routing structure with a dispatch system combining with our Dependency injection pattern.
 - SapiEmitter : This library allows us to emit our responses via the strategic use of PSR-15 php request response architecture.
 - League/CSV: a library for managing and writing to CSV files.
+
+## Running the project
+
+### Docker setup
+WIP(work in process)
+
+### Running with Command line.
+
+- Access the frontend folder in your terminal, run the command
+
+```sh
+$ npm start
+```
+
+- Access the backend folder in your terminal
+
+```sh
+$ php -S localhost:4000 -t public/
+```
+
+- Your app should be running. Access the angular app on http://localhost:4200, check in on the CSV file at backend/data.csv
