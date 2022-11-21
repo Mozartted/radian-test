@@ -48,7 +48,8 @@ Objective: This test will be a fully functional web application that will displa
 
 ---
 
-# My Solution.
+## Solution
+
 The frontend was developed with Angular 15, and the backend is build on php, without any framework design. The libraries employed were used to create a light-weight framework design for better code management. So this architecture is build just for the sole purpose of this project.
 
 ### Advantages
@@ -64,8 +65,9 @@ This allows us to use proper cors architecture and design a proper routing syste
 
 ## Running the project
 
-### Docker setup
-WIP(work in process)
+### Docker setup
+
+WIP(work in progress)
 
 ### Running with Command line.
 
