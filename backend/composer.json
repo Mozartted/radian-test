@@ -1,0 +1,25 @@
+{
+    "name": "radian/testbackend",
+    "description": "Backend for the radian project",
+    "require": {
+        "php": ">=7.0",
+        "laminas/laminas-diactoros": "^2.9",
+        "middlewares/fast-route": "^2.0",
+        "middlewares/request-handler": "^2.0",
+        "narrowspark/http-emitter": "^1.0|^2.0",
+        "php-di/php-di": "^6.3",
+        "relay/relay": "^2.1",
+        "league/csv": "^9.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Radian\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chibuike Emmanuel",
+            "email": "mozart.osita@gmail.com"
+        }
+    ]
+}
