@@ -116,4 +116,54 @@ class CsvManager {
     $this->response->getBody()->write(json_encode($requestObject));
     return $this->response;
   }
+
+   public function deleteItem(ServerRequest $request): ResponseInterface {
+    $file_location = dirname(__DIR__).'/data.csv';
+    $id = $request->getAttribute("id");
+    $csv = Reader::createFromPath($file_location, 'r');
+    $csv->setHeaderOffset(0);
+    $data = [];
+    $results = $csv->getRecords();
+    foreach ($results as $row) {
+          $data[] = $row;
+    }
+    $requestObject = (array) json_decode($request->getBody()->getContents());
+
+    $key = array_search($id, array_column($data, 'id'));
+
+    unset($data[$key]);
+
+    $outFile = fopen($file_location, "w");
+    fclose($outFile);
+    // check data to find the array with the matching attribute.
+    $writer = Writer::createFromPath($file_location, 'w');
+    $csv->setHeaderOffset(0);
+    // var_dump($data);
+    // write to the csv file.
+    $writer->insertOne([
+      "id",
+      "name",
+      "state",
+      "zip",
+      "amount",
+      "qty",
+      "item"
+    ]);
+
+    foreach($data as $item){
+      $writer->insertOne([
+        (string) $item["id"],
+        (string) $item["name"],
+        (string) $item["state"],
+        (string) $item["zip"],
+        (string) $item["amount"],
+        (string) $item["qty"],
+        (string) $item["item"],
+      ]);
+    }
+
+    // return response here 
+    $this->response->getBody()->write(json_encode($requestObject));
+    return $this->response;
+  }
 }

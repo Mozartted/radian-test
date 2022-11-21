@@ -2,8 +2,6 @@
 declare(strict_types=1);
 
 use DI\ContainerBuilder;
-// use ExampleApp\HelloWorld;
-// use ExampleApp\MainPage;
 use Radian\CsvManager;
 use FastRoute\RouteCollector;
 use Middlewares\FastRoute;
@@ -12,14 +10,10 @@ use Narrowspark\HttpEmitter\SapiEmitter;
 use Relay\Relay;
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequestFactory;
-use Neomerx\Cors\Strategies\Settings;
-use Neomerx\Cors\Analyzer;
 
 use function DI\create;
 use function DI\get;
 use function FastRoute\simpleDispatcher;
-
-header("Access-Control-Allow-Origin: *");
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -40,6 +34,7 @@ $routes = simpleDispatcher(function (RouteCollector $r) {
     $r->get('/items', [CsvManager::class, 'getItems']);
     $r->post('/items', [CsvManager::class, 'addItem']);
     $r->put('/items/{id}', [CsvManager::class, 'updateItem']);
+    $r->delete('/items/{id}', [CsvManager::class, 'deleteItem']);
 });
 
 $middlewareQueue[] = new Tuupola\Middleware\CorsMiddleware([
