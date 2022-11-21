@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  nginx:
+    build: docker/nginx
+    ports:
+      - 4000:80
+    volumes_from:
+      - app
+  app:
+    command: "true"
+    platform: linux/amd64
+    image: alpine:3.4
+    volumes:
+      - ./backend:/var/www/app
+  php:
+    build: docker/php
+    expose:
+      - 9000
+    volumes:
+      - composer-cache:/composer/cache
+    volumes_from:
+      - app
+  angular-ui:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-dev
+    ports:
+      - "4200:4200"
+    container_name: angular-ui
+
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - /usr/src/app/frontend/node_modules
+
+volumes:
+  composer-cache:
+    driver: local
