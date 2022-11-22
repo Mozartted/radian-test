@@ -69,6 +69,18 @@ WIP(work in process)
 
 ### Running with Command line.
 
+- Run dependency installation commands on both the backend and frontends respectively
+
+```sh
+# in the frontend folder
+$ npm install
+```
+
+```sh
+# in the backend folder (ensure you have composer setup)
+$ composer install
+```
+
 - Access the frontend folder in your terminal, run the command
 
 ```sh
